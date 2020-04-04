@@ -124,7 +124,9 @@ router.get('/feed', auth.required, function(req, res, next) {
 
 router.post('/', auth.required, function(req, res, next) {
   User.findById(req.payload.id).then(function(user){
-    if (!user) { return res.sendStatus(401); }
+    if (!user) { 
+      return res.sendStatus(401); 
+    }
 
     var article = new Article(req.body.article);
 

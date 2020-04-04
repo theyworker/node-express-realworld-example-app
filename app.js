@@ -41,6 +41,7 @@ require('./models/User');
 require('./models/Article');
 require('./models/Comment');
 require('./config/passport');
+require('./models/Pot')
 
 app.use(require('./routes'));
 

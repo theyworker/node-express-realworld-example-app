@@ -4,7 +4,6 @@ var slug = require('slug');
 var User = mongoose.model('User');
 
 var ArticleSchema = new mongoose.Schema({
-  slug: {type: String, lowercase: true, unique: true},
   title: String,
   description: String,
   body: String,
@@ -17,16 +16,10 @@ var ArticleSchema = new mongoose.Schema({
 ArticleSchema.plugin(uniqueValidator, {message: 'is already taken'});
 
 ArticleSchema.pre('validate', function(next){
-  if(!this.slug)  {
-    this.slugify();
-  }
-
   next();
 });
 
-ArticleSchema.methods.slugify = function() {
-  this.slug = slug(this.title) + '-' + (Math.random() * Math.pow(36, 6) | 0).toString(36);
-};
+
 
 ArticleSchema.methods.updateFavoriteCount = function() {
   var article = this;
@@ -40,7 +33,6 @@ ArticleSchema.methods.updateFavoriteCount = function() {
 
 ArticleSchema.methods.toJSONFor = function(user){
   return {
-    slug: this.slug,
     title: this.title,
     description: this.description,
     body: this.body,

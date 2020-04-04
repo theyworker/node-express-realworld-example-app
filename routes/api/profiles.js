@@ -6,8 +6,7 @@ var auth = require('../auth');
 // Preload user profile on routes with ':username'
 router.param('username', function(req, res, next, username){
   User.findOne({username: username}).then(function(user){
-    if (!user) { return res.sendStatus(404); }
-
+    if (!user) {return res.sendStatus(404); }
     req.profile = user;
 
     return next();
