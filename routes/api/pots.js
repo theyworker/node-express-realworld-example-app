@@ -12,7 +12,16 @@ router.post('/', auth.optional, function(req, res,next){
 })
 
 router.get('/:pot', auth.optional, function(req,res,next){
-    console.log("pot requested > ", req.body.pot)
-    return res.json({pot: {...req.body.pot}})
+Pot.findById(req.params.pot).then((response)=> {
+    if(response)
+    return res.json({pot: {...response._doc}, success : true})
+
+    else
+    return res.json({success : false})
+})
+
+  
+
+// return res.json({ sucess : false})
 })
 module.exports = router;
