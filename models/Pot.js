@@ -7,13 +7,20 @@ var PotSchema = new mongoose.Schema(
         price : Number,
         discountPrice : {type : Number, default: 0},
         colours : [{type : String}],
+        styleOfPainting : [{type : String}],
+        placementSuggestions : [{type : String}],
         tags : [{type:String}],
         size : Number,
         material : String,
-        stand : Boolean,
-        stock: Number
+        stock: Number,
+        active : Boolean
     }
 );
+
+PotSchema.pre('save', function(next){
+    this.active = true;
+    next();
+})
 
 PotSchema.methods.toJSONFor = function () {
     return{
