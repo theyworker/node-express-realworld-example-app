@@ -125,7 +125,7 @@ async function addPoo(){
                 "price" : randomprice(),
                 "discountPrice" : 0,
                 "colours" : getRandomColours(),
-                "styleOfPainting" : [listStyles[Math.round(Math.random()*listStyles.length)]],
+                "styleOfPainting" : listStyles[Math.round(Math.random()*listStyles.length)],
                 "placementSuggestions" : ["kitchen counter"],
                 "tags" : randomTags(),
                 "size" : Math.floor(Math.random()*5),

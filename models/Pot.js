@@ -7,7 +7,7 @@ var PotSchema = new mongoose.Schema(
         price : Number,
         discountPrice : {type : Number, default: 0},
         colours : [{type : String}],
-        styleOfPainting : [{type : String}],
+        styleOfPainting : String,
         placementSuggestions : [{type : String}],
         tags : [{type:String}],
         size : Number,

@@ -10,13 +10,19 @@ router.get('/', auth.optional, function (req, res, next) {
         search.price = { $gt: query.priceMin, $lt: query.priceMax }
 
     if (query.colours)
-        search.colours = { $in : [query.colours] }
+        search.colours = { $in: [query.colours] }
 
     if (query.size)
         search.size = query.size
 
+    if (query.styleofpainting)
+        search.styleOfPainting = query.styleofpainting
+
+    if (query.placement)
+        search.placementSuggestions ={ $in : [query.placement]}
+
     Pot.find(search).then(response => {
-        res.json({ results : response, success: true })
+        res.json({ results: response, success: true })
     }).catch(
         () => res.json({ success: false })
     )
