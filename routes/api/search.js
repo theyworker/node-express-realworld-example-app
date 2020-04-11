@@ -22,7 +22,7 @@ router.get('/', auth.optional, function (req, res, next) {
         search.placementSuggestions ={ $in : [query.placement]}
 
     Pot.find(search).then(response => {
-        res.json({ results: response, success: true })
+        res.json({ results: response , numofresults: response.length, success: true })
     }).catch(
         () => res.json({ success: false })
     )
