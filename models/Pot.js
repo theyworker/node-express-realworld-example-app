@@ -50,4 +50,5 @@ PotSchema.methods.toJSONFor = function () {
     }
 }
 
+
 mongoose.model('Pot', PotSchema)
