@@ -29,10 +29,8 @@ router.get('/', auth.optional, function (req, res, next) {
                 })
             })
         })
-    })
+    }).catch(err=> res.json({succes: false, message :err}))
 })
-
-
 
 
 

@@ -1,12 +1,14 @@
 var router = require('express').Router();
 var mongoose = require('mongoose');
-var Article = mongoose.model('Article');
+var Pot = mongoose.model('Pot');
+var auth = require('../auth');
 
 // return a list of tags
-router.get('/', function(req, res, next) {
-  Article.find().distinct('tagList').then(function(tags){
-    return res.json({tags: tags});
-  }).catch(next);
-});
+router.get('/', auth.optional, function (req, res, next) {
+  Pot.find().distinct('tags').then(tagData=> res.json({tags: tagData}))
+  })
+  
+  
+  
 
 module.exports = router;
